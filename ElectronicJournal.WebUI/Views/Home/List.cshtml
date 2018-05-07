@@ -1,0 +1,35 @@
+﻿@model ElectronicJournal.Domain.Abstract.IStudentRepository
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>List</title>
+</head>
+<body>
+    <div> 
+        <table cols ="5">
+            
+            <tr>
+                <td>FIO</td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+            </tr>
+        @foreach (var item in Model.students)
+        {
+            <tr>
+                <td>@item.FIO;</td>
+                
+            </tr>
+        }
+            </table>
+    </div>
+</body>
+</html>
