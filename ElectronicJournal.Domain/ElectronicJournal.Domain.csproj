@@ -50,6 +50,7 @@
     <Compile Include="Abstract\IStudentRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\EFStudentRepository.cs" />
+    <Compile Include="Entites\Assessment.cs" />
     <Compile Include="Entites\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

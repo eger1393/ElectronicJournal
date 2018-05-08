@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 
 namespace ElectronicJournal.Domain.Entites
 {
-	public class Student
+	public class Assessment
 	{
-		public String FIO { get; set; }
 		/// <summary>
-		/// Список оценок студента
+		/// Оценка
 		/// </summary>
-		public List<Assessment> Assessments { get; set; } 
+		public string Grade { get; set; }
+		/// <summary>
+		/// Дата оценки
+		/// </summary>
+		public string Date { get; set; }
 	}
 }
