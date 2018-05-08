@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using Moq;
 using ElectronicJournal.Domain.Abstract;
 using ElectronicJournal.Domain.Entites;
+using ElectronicJournal.Domain.Concrete; //
+
 
 namespace ElectronicJournal.WebUI.Controllers
 {
@@ -18,9 +20,7 @@ namespace ElectronicJournal.WebUI.Controllers
 		public HomeController(IStudentRepository studentsRepository)
 		{
 			students = studentsRepository;
-		}
-        public ActionResult List()
-        {
+
 			mock.Setup(m => m.students).Returns(new Student[]
 			{
 				new Student{FIO = "Ivanov I. I."},
@@ -29,8 +29,24 @@ namespace ElectronicJournal.WebUI.Controllers
 				new Student{FIO = "Shavrin S. S."}
 			});
 			students = mock.Object;
+			for (int i = 0; i < 4; i++)
+			{
+				students.students.ElementAt(i).Assessments.Add(new Assessment());
+				students.students.ElementAt(i).Assessments.Add(new Assessment());
+				students.students.ElementAt(i).Assessments.Add(new Assessment());
+				students.students.ElementAt(i).Assessments.Add(new Assessment());
+			}
+		}
+        public ActionResult List()
+        {
 
-            return View(students);
+            return View(students.students.ToArray());
         }
+		[HttpPost]
+		public string List(Student[] students)
+		{
+
+			return "Good!";
+		}
     }
 }

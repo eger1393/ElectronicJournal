@@ -8,6 +8,10 @@ namespace ElectronicJournal.Domain.Entites
 {
 	public class Student
 	{
+		public Student()
+		{
+			Assessments = new List<Assessment>();
+		}
 		public String FIO { get; set; }
 		/// <summary>
 		/// Список оценок студента
