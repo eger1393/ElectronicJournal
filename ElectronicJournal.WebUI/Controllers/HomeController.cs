@@ -15,31 +15,33 @@ namespace ElectronicJournal.WebUI.Controllers
     {
 		//temp
 		Mock<IStudentRepository> mock = new Mock<IStudentRepository>();
-		//
-		IStudentRepository students;
+        //
+        IStudentRepository students = new EFStudentRepository();
 		public HomeController(IStudentRepository studentsRepository)
 		{
-			students = studentsRepository;
+            //students = studentsRepository;
 
-			mock.Setup(m => m.students).Returns(new Student[]
-			{
-				new Student{FIO = "Ivanov I. I."},
-				new Student{FIO = "Sidorov S. A."},
-				new Student{FIO = "Petrov S. A"},
-				new Student{FIO = "Shavrin S. S."}
-			});
-			students = mock.Object;
-			for (int i = 0; i < 4; i++)
-			{
-				students.students.ElementAt(i).Assessments.Add(new Assessment());
-				students.students.ElementAt(i).Assessments.Add(new Assessment());
-				students.students.ElementAt(i).Assessments.Add(new Assessment());
-				students.students.ElementAt(i).Assessments.Add(new Assessment());
-			}
-		}
+            //mock.Setup(m => m.students).Returns(new Student[]
+            //{
+            //	new Student{FIO = "Ivanov I. I."},
+            //	new Student{FIO = "Sidorov S. A."},
+            //	new Student{FIO = "Petrov S. A"},
+            //	new Student{FIO = "Shavrin S. S."}
+            //});
+            //students = mock.Object;
+            //for (int i = 0; i < 4; i++)
+            //{
+            //	students.students.ElementAt(i).Assessments.Add(new Assessment());
+            //	students.students.ElementAt(i).Assessments.Add(new Assessment());
+            //	students.students.ElementAt(i).Assessments.Add(new Assessment());
+            //	students.students.ElementAt(i).Assessments.Add(new Assessment());
+            //}
+                      
+        }
+
         public ActionResult List()
         {
-
+            ViewBag.Days = new Troop().DaysArrival;
             return View(students.students.ToArray());
         }
 		[HttpPost]

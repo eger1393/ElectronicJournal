@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace ElectronicJournal.Domain.Entites
 {
@@ -12,10 +13,18 @@ namespace ElectronicJournal.Domain.Entites
 		{
 			Assessments = new List<Assessment>();
 		}
-		public String FIO { get; set; }
-		/// <summary>
-		/// Список оценок студента
-		/// </summary>
-		public List<Assessment> Assessments { get; set; } 
+
+        [Key]
+        public int Id { get; set; }
+        public string FIO { get; set; }
+
+        public int? TroopId { get; set; }
+        [System.ComponentModel.DataAnnotations.Schema.ForeignKey("TroopId")]
+        public Troop Troop { get; set; }
+
+        /// <summary>
+        /// Список оценок студента
+        /// </summary>
+        public List<Assessment> Assessments { get; set; } 
 	}
 }

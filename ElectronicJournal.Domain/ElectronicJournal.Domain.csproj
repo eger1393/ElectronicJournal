@@ -48,11 +48,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\ITroopRepository.cs" />
     <Compile Include="Abstract\IStudentRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\EFStudentRepository.cs" />
+    <Compile Include="Concrete\EFTroopRepository.cs" />
     <Compile Include="Entites\Assessment.cs" />
+    <Compile Include="Entites\DbInitializer.cs" />
+    <Compile Include="Entites\Discipline.cs" />
+    <Compile Include="Entites\Prepod.cs" />
     <Compile Include="Entites\Student.cs" />
+    <Compile Include="Entites\Theme.cs" />
+    <Compile Include="Entites\Troop.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
