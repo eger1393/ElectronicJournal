@@ -26,7 +26,7 @@ namespace ElectronicJournal.Domain.Entites
         /// <summary>
         /// Список студентов
         /// </summary>
-        private List<Student> Students { get; set; }
+        public virtual List<Student> Students { get; set; }
         /// <summary>
         /// Номер взвода
         /// </summary>
@@ -43,11 +43,11 @@ namespace ElectronicJournal.Domain.Entites
 		/// <summary>
 		/// Список дисциплин изучающихся взводом
 		/// </summary>
-		public List<Discipline> Disciplines { get; set; }
+		public virtual List<Discipline> Disciplines { get; set; }
 
         public int? PrepodId { get; set; }
         [System.ComponentModel.DataAnnotations.Schema.ForeignKey("PrepodId")]
-        public Prepod Prepod { get; set; }
+        public virtual Prepod Prepod { get; set; }
 
         void ScheduleGeneration()
         {

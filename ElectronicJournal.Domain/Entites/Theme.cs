@@ -32,6 +32,6 @@ namespace ElectronicJournal.Domain.Entites
 
         public int? DisciplineId { get; set; }
         [System.ComponentModel.DataAnnotations.Schema.ForeignKey("DisciplineId")]
-        public Discipline Discipline { get; set; }
+        public virtual Discipline Discipline { get; set; }
     }
 }

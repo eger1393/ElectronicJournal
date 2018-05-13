@@ -14,7 +14,9 @@ namespace ElectronicJournal.WebUI
         protected void Application_Start()
         {
             //Database.SetInitializer(new Domain.Entites.DbInitializer());
-                      
+            Database.SetInitializer(
+                new DropCreateDatabaseIfModelChanges<Domain.Concrete.EFDbContext>());
+
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 

@@ -31,7 +31,7 @@ namespace ElectronicJournal.WebUI.Controllers
 				Troop = Troop, // нах в модели мне номер взвода и дисциплина??
 				Discipline = Discipline // хотя как вариант выводить в их перед таблицей Взвод - Название дисциплины
 			};
-            ViewBag.Days = new Troop().DaysArrival;
+            ViewBag.Days = /*model.Students.FirstOrDefault().Troop*/new Troop().DaysArrival;
             return View(model);
         }
 		[HttpPost]

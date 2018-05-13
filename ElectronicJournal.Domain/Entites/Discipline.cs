@@ -21,15 +21,16 @@ namespace ElectronicJournal.Domain.Entites
         /// <summary>
         /// Список тем
         /// </summary>
-        public List<Theme> Theme { get; set; }
+        public virtual List<Theme> Theme { get; set; }
 		public string Name { get; set; }
+
         public int? PrepodId { get; set; }
         [System.ComponentModel.DataAnnotations.Schema.ForeignKey("PrepodId")]
-        public Prepod Prepod { get; set; }
+        public virtual Prepod Prepod { get; set; }
 
         public int? TroopId { get; set; }
         [System.ComponentModel.DataAnnotations.Schema.ForeignKey("TroopId")]
-        public Troop Troop { get; set; }
+        public virtual Troop Troop { get; set; }
 
     }
 }
