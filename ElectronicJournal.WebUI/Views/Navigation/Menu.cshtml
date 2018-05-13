@@ -13,13 +13,13 @@
     <ul class="jstree-no-icons">
         @foreach (var item in Model.troops)
         {
-            <li class="jstree-no-icons">
+            <li class=@String.Concat("jstree-no-icons",item.Number == (string)ViewBag.SelectedTroop? " jstree-open" : "")>
                 @Html.RouteLink(item.Number, new
                 {
                     controller = "Home",
                     action = "List",
                     troop = item.Number,
-                    discipline = "Утренний развод"
+                    discipline = (string)null
                 })
                 <ul>
                     @foreach (var Discipline in item.Disciplines)

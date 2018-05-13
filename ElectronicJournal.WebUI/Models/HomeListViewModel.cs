@@ -10,7 +10,7 @@ namespace ElectronicJournal.WebUI.Models
 	{
 		public Student[] Students { get; set; }
 		public string Troop { get; set; }
-
+		public List<DateTime> DaysArrival { get; set; }
 		public string Discipline { get; set; }
 	}
 }
