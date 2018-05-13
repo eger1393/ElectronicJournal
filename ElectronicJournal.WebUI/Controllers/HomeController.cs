@@ -6,48 +6,37 @@ using System.Web.Mvc;
 using Moq;
 using ElectronicJournal.Domain.Abstract;
 using ElectronicJournal.Domain.Entites;
-using ElectronicJournal.Domain.Concrete; //
+using ElectronicJournal.WebUI.Models;
 
 
 namespace ElectronicJournal.WebUI.Controllers
 {
     public class HomeController : Controller
     {
-		//temp
-		Mock<IStudentRepository> mock = new Mock<IStudentRepository>();
-        //
-        IStudentRepository students = new EFStudentRepository();
+		//
+		IStudentRepository repository;
 		public HomeController(IStudentRepository studentsRepository)
 		{
-            //students = studentsRepository;
-
-            //mock.Setup(m => m.students).Returns(new Student[]
-            //{
-            //	new Student{FIO = "Ivanov I. I."},
-            //	new Student{FIO = "Sidorov S. A."},
-            //	new Student{FIO = "Petrov S. A"},
-            //	new Student{FIO = "Shavrin S. S."}
-            //});
-            //students = mock.Object;
-            //for (int i = 0; i < 4; i++)
-            //{
-            //	students.students.ElementAt(i).Assessments.Add(new Assessment());
-            //	students.students.ElementAt(i).Assessments.Add(new Assessment());
-            //	students.students.ElementAt(i).Assessments.Add(new Assessment());
-            //	students.students.ElementAt(i).Assessments.Add(new Assessment());
-            //}
-                      
+            repository = studentsRepository;
         }
 
-        public ActionResult List()
-        {
+		public ViewResult List(string Troop = null, string Discipline = null)
+		{
+			//TODOНазвание дисциплины нужно для вывода оценок
+			HomeListViewModel model = new HomeListViewModel
+			{
+				Students = repository.students.Where(ob => ob.Troop.Number == Troop || Troop == null)
+				.OrderBy(ob => ob.FIO)
+				.ToArray(),
+				Troop = Troop, // нах в модели мне номер взвода и дисциплина??
+				Discipline = Discipline // хотя как вариант выводить в их перед таблицей Взвод - Название дисциплины
+			};
             ViewBag.Days = new Troop().DaysArrival;
-            return View(students.students.ToArray());
+            return View(model);
         }
 		[HttpPost]
 		public string List(Student[] students)
 		{
-
 			return "Good!";
 		}
     }

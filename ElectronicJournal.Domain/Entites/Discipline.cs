@@ -22,7 +22,7 @@ namespace ElectronicJournal.Domain.Entites
         /// Список тем
         /// </summary>
         public List<Theme> Theme { get; set; }
-
+		public string Name { get; set; }
         public int? PrepodId { get; set; }
         [System.ComponentModel.DataAnnotations.Schema.ForeignKey("PrepodId")]
         public Prepod Prepod { get; set; }

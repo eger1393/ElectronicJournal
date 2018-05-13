@@ -1,0 +1,64 @@
+﻿@model ElectronicJournal.Domain.Abstract.ITroopRepository
+@{
+    Layout = null;
+}
+
+<link rel="stylesheet" href="http://static.jstree.com/3.0.0-beta5/assets/bootstrap/css/bootstrap.css" />
+@*<link href="~/Content/jsTree/docs.css" rel="stylesheet" />*@
+<link href="~/Content/jsTree/themes/default/style.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.0.0.js"></script>
+<script src="~/Scripts/jsTree3/jstree.js"></script>
+
+<div id="jstree">
+    <ul class="jstree-no-icons">
+        @foreach (var item in Model.troops)
+        {
+            <li class="jstree-no-icons">
+                @Html.RouteLink(item.Number, new
+                {
+                    controller = "Home",
+                    action = "List",
+                    troop = item.Number,
+                    discipline = "Утренний развод"
+                })
+                <ul>
+                    @foreach (var Discipline in item.Disciplines)
+                    {
+                        <li class="jstree-no-icons">
+                            @Html.RouteLink(Discipline.Name, new
+                            {
+                                controller = "Home",
+                                action = "List",
+                                troop = item.Number,
+                                discipline = Discipline.Name
+                            })
+                        </li>
+                    }
+                </ul>
+            </li>
+        }
+    </ul>
+</div>
+
+
+<script type="text/javascript">
+    $(function () {
+        $('#jstree').jstree().on('changed.jstree', function (e, data) {
+            location.href = data.node.a_attr.href;
+        })
+    });
+</script>
+
+
+@*@foreach (var item in Model.troops)
+    {
+        @Html.RouteLink(item.Number, new
+    {
+        controller = "Home",
+        action = "List",
+        Category = item.Number
+    }, new
+    {
+        @class = "nav-link"
+    });
+    }*@

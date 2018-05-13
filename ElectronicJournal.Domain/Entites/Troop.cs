@@ -40,10 +40,10 @@ namespace ElectronicJournal.Domain.Entites
         /// </summary>
         public List<DateTime> DaysArrival{ get; set; }
 
-        /// <summary>
-        /// Список дисциплин изучающихся взводом
-        /// </summary>
-        public List<Discipline> Disciplines { get; set; }
+		/// <summary>
+		/// Список дисциплин изучающихся взводом
+		/// </summary>
+		public List<Discipline> Disciplines { get; set; }
 
         public int? PrepodId { get; set; }
         [System.ComponentModel.DataAnnotations.Schema.ForeignKey("PrepodId")]
