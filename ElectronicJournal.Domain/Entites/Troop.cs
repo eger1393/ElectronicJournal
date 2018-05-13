@@ -16,7 +16,15 @@ namespace ElectronicJournal.Domain.Entites
         {
             Day = DaysArriv[0];
             DaysArrival = new List<DateTime>();
-            ScheduleGeneration();
+            ScheduleGeneration(DateTime.MinValue);
+            Disciplines = new List<Discipline>();
+            for (int i = 0; i < 3; i++)
+            {
+                Disciplines.Add(new Discipline(DaysArrival.Count) { Name = i.ToString() });
+            }
+               
+            
+          
         }
 
         [Key]
@@ -49,22 +57,19 @@ namespace ElectronicJournal.Domain.Entites
         [System.ComponentModel.DataAnnotations.Schema.ForeignKey("PrepodId")]
         public virtual Prepod Prepod { get; set; }
 
-        void ScheduleGeneration()
+        void ScheduleGeneration(DateTime temp)
         {
-            DateTime temp = new DateTime(2018, 2, 7);
-
             for (int i = 0; i < 16; i++)
             {
                 if (temp == DateTime.MinValue)
                 {
                     temp = DateTime.Today;
-                   
                 }
                 else
                 {
+                    DaysArrival.Add(temp);
                     temp = temp.AddDays(7);
                 }
-                DaysArrival.Add(temp);
             }
 
             List<DateTime> holidays = new List<DateTime>{ new DateTime(DateTime.Today.Year,1,1), new DateTime(DateTime.Today.Year, 1, 2), new DateTime(DateTime.Today.Year, 1, 3),

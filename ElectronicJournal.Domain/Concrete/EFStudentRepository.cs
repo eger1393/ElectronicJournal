@@ -11,7 +11,15 @@ namespace ElectronicJournal.Domain.Concrete
 	public class EFStudentRepository : IStudentRepository
 	{
 		private EFDbContext context = new EFDbContext();
-		public IEnumerable<Student> students { get { return context.Students; } }
+
+        public EFStudentRepository()
+        {
+            foreach (var item in students)
+            {
+                item.CreateAssessment();
+            }
+        }
+        public IEnumerable<Student> students { get { return context.Students; } }
 		public void SaveChanges(Student student)
 		{
 			if(student.Id == 0)

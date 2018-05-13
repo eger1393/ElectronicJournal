@@ -11,7 +11,7 @@ namespace ElectronicJournal.Domain.Entites
     {
         public Theme()
         {
-
+          
         }
 
         [Key]

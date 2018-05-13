@@ -11,8 +11,8 @@ namespace ElectronicJournal.Domain.Entites
 	{
 		public Student()
 		{
-			Assessments = new List<Assessment>();
-		}
+            Assessments = new List<Assessment>();
+        }
 
         [Key]
         public int Id { get; set; }
@@ -26,5 +26,14 @@ namespace ElectronicJournal.Domain.Entites
         /// Список оценок студента
         /// </summary>
         public virtual List<Assessment> Assessments { get; set; } 
-	}
+
+        public void CreateAssessment()
+        {
+            for (int i = 0; i < Troop.DaysArrival.Count; i++)
+            {
+                Assessments.Add(new Assessment());
+            }
+        }
+
+    }
 }

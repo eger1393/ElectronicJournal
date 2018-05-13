@@ -26,7 +26,7 @@ namespace ElectronicJournal.WebUI.Controllers
 			//TODOНазвание дисциплины нужно для вывода оценок
 			HomeListViewModel model = new HomeListViewModel
 			{
-				Students = repository.students//.Where(ob => ob.Troop.Number == Troop || Troop == null)
+				Students = repository.students.Where(ob => ob.Troop.Number == Troop || Troop == null)
 				.OrderBy(ob => ob.FIO)
 				.ToArray(),
 				Troop = Troop, // нах в модели мне номер взвода и дисциплина??
@@ -39,6 +39,7 @@ namespace ElectronicJournal.WebUI.Controllers
 		[HttpPost]
 		public ActionResult List(Student[] students)
 		{
+            
 			for(int i = 0; i < students.Count(); i++)
 			{
 				if(!students[i].Equals(repository.students.ElementAt(i)))

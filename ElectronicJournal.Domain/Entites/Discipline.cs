@@ -12,7 +12,20 @@ namespace ElectronicJournal.Domain.Entites
     {
         public Discipline()
         {
+            Theme = new List<Theme>();
+            for (int i = 0; i < 16; i++)
+            {
+                Theme.Add(new Theme() { Title = "Тема"+i });
+            }
+        }
 
+        public Discipline(int count_theme)
+        {
+            Theme = new List<Theme>();
+            for (int i = 0; i < count_theme; i++)
+            {
+                Theme.Add(new Theme() { Title = "Тема" + i } );
+            }
         }
 
         [Key]

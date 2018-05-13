@@ -15,7 +15,7 @@ namespace ElectronicJournal.Domain.Entites
             temp_list_th.Add(new Theme { Title = "1 тема" });
 
             List<Discipline> temp_list_ds = new List<Discipline>();
-            temp_list_ds.Add(new Discipline { Name = "РЛС", Theme = temp_list_th });
+            //temp_list_ds.Add(new Discipline { Name = "РЛС", Theme = temp_list_th });
 
             db.Troops.Add(new Troop { Number = "410", Disciplines = temp_list_ds });
 

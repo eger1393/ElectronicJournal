@@ -35,14 +35,23 @@
                     @*@Html.HiddenFor(m => m.Students[i].Assessments);*@
                     <tr>
                         <td>@(i + 1)</td>@*Номер в списке*@
-                        <td>@Html.DisplayFor(m => m.Students[i].FIO)</td>@*ФИО*@
+                        <td>@Html.DisplayFor(m => m.Students[i].FIO)</td>
+                        @for (int j = 0; j < Model.Students[i].Assessments.Count; j++)
+                        {
+                            <td>
+                                @Html.DropDownListFor(m => m.Students[i].Assessments[j].Grade, new SelectList(new string[]
+                                                      { "","2","3","4","5","н","б" }))
+
+                            </td>
+                        }
+                        @*<td>@Html.DisplayFor(m => m.Students[i].FIO)</td>@*ФИО
                         @foreach (var item in ViewBag.Days)
                         {
                             <td>
                                 @Html.DropDownListFor(m => m.Students[i].Assessments[0].Grade, new SelectList(new string[]
                                       { "","2","3","4","5","н","б" }))
                             </td>
-                        }
+                        }*@
                     </tr>
                 }
             </table>
