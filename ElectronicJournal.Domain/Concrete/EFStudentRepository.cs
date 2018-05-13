@@ -12,5 +12,24 @@ namespace ElectronicJournal.Domain.Concrete
 	{
 		private EFDbContext context = new EFDbContext();
 		public IEnumerable<Student> students { get { return context.Students; } }
+		public void SaveChanges(Student student)
+		{
+			if(student.Id == 0)
+			{
+				context.Students.Add(student);
+			}
+			else
+			{
+				Student dbEntry = context.Students.Find(student.Id);
+				if(dbEntry != null)
+				{
+					dbEntry.FIO = student.FIO;
+					dbEntry.Assessments = student.Assessments;
+					dbEntry.Troop = student.Troop;
+					dbEntry.TroopId = student.TroopId;
+				}
+			}
+			context.SaveChanges();
+		}
 	}
 }

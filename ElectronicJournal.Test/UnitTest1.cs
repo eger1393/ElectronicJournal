@@ -29,6 +29,13 @@ namespace ElectronicJournal.Test
 				new Student {FIO = "Тест 5", Troop = new Troop {Number = "2"}},
 				new Student {FIO = "Тест 6", Troop = new Troop {Number = "3"}},
 			});
+			//Mock<ITroopRepository> troop = new Mock<ITroopRepository>();
+			//troop.Setup(m => m.troops).Returns(new Troop[]
+			//{
+			//	new Troop {Number = "1"},
+			//	new Troop {Number = "2"},
+			//	new Troop {Number = "3"}
+			//});
 			HomeController controller = new HomeController(repo.Object);
 			//act
 			Student[] result = ((HomeListViewModel)controller.List(Troop: "1").Model).Students;

@@ -7,6 +7,7 @@ using Moq;
 using ElectronicJournal.Domain.Abstract;
 using ElectronicJournal.Domain.Entites;
 using ElectronicJournal.WebUI.Models;
+using System.Data.Entity.Validation;
 
 
 namespace ElectronicJournal.WebUI.Controllers
@@ -25,19 +26,34 @@ namespace ElectronicJournal.WebUI.Controllers
 			//TODOНазвание дисциплины нужно для вывода оценок
 			HomeListViewModel model = new HomeListViewModel
 			{
-				Students = repository.students.Where(ob => ob.Troop.Number == Troop || Troop == null)
+				Students = repository.students//.Where(ob => ob.Troop.Number == Troop || Troop == null)
 				.OrderBy(ob => ob.FIO)
 				.ToArray(),
 				Troop = Troop, // нах в модели мне номер взвода и дисциплина??
 				Discipline = Discipline // хотя как вариант выводить в их перед таблицей Взвод - Название дисциплины
+
 			};
             ViewBag.Days = new Troop().DaysArrival;
             return View(model);
         }
 		[HttpPost]
-		public string List(Student[] students)
+		public ActionResult List(Student[] students)
 		{
-			return "Good!";
+			for(int i = 0; i < students.Count(); i++)
+			{
+				if(!students[i].Equals(repository.students.ElementAt(i)))
+				{
+					try
+					{
+						repository.SaveChanges(students[i]);
+					}
+					catch (DbEntityValidationException ex)
+					{
+						
+					}
+				}
+			}
+			return RedirectToAction("List");
 		}
     }
 }
