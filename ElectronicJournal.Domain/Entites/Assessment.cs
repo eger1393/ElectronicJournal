@@ -9,15 +9,18 @@ namespace ElectronicJournal.Domain.Entites
 {
     public class Assessment
     {
+		public Assessment()
+		{
+
+		}
         [Key]
-        public string AssessmentId { get; set;}
+        public int AssessmentId { get; set;}
 		/// <summary>
 		/// Оценка
 		/// </summary>
 		public string Grade { get; set; }
-		/// <summary>
-		/// Дата оценки
-		/// </summary>
-		public string Date { get; set; }
+		public int? ThemeId { get; set; }
+		[System.ComponentModel.DataAnnotations.Schema.ForeignKey("ThemeId")]
+		public virtual Theme Theme { get; set; }
 	}
 }

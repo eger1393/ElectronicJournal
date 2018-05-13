@@ -21,7 +21,7 @@
                     <td colspan="18">Посещения и успеваемость</td>
                 </tr>
                 <tr>
-                    @foreach (var item in ViewBag.Days)
+                    @foreach (var item in Model.DaysArrival)
                     {
                         <td>@item.ToString("dd.MM")</td>
                     }
@@ -36,11 +36,11 @@
                     <tr>
                         <td>@(i + 1)</td>@*Номер в списке*@
                         <td>@Html.DisplayFor(m => m.Students[i].FIO)</td>@*ФИО*@
-                        @foreach (var item in ViewBag.Days)
+                        @for (int j = 0; j < Model.DaysArrival.Count(); j++)//бред
                         {
                             <td>
-                                @Html.DropDownListFor(m => m.Students[i].Assessments[0].Grade, new SelectList(new string[]
-                                      { "","2","3","4","5","н","б" }))
+                                @Html.DropDownListFor(m => m.Students[i].Assessments[j].Grade, new SelectList(new string[]
+                                           { "","2","3","4","5","н","б" }))
                             </td>
                         }
                     </tr>

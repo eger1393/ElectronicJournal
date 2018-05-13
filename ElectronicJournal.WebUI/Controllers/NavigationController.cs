@@ -15,29 +15,9 @@ namespace ElectronicJournal.WebUI.Controllers
 			repository = troopRepository;
 		}
         // GET: Navigation
-        public PartialViewResult Menu(string Category = null)
+        public PartialViewResult Menu(string Troop = null)
         {
-			ViewBag.SelectedCategory = Category;
-
-			//Убрать после того как тоха починит БД
-			foreach (var item in repository.troops)
-			{
-				if (item.Disciplines == null)
-				{
-					item.Disciplines = new List<Domain.Entites.Discipline>();
-				}
-				for (int i = 1; i <= 3; i++)
-				{
-					item.Disciplines.Add(new Domain.Entites.Discipline
-					{
-						Name = "test" + i,
-						Troop = item,
-						TroopId = item.TroopId,
-						DisciplineId = item.TroopId + i
-					});
-					}
-			}
-			//
+			ViewBag.SelectedTroop = Troop;
 
             return PartialView(repository);
         }
