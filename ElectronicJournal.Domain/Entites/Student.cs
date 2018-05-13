@@ -20,11 +20,11 @@ namespace ElectronicJournal.Domain.Entites
 
         public int? TroopId { get; set; }
         [System.ComponentModel.DataAnnotations.Schema.ForeignKey("TroopId")]
-        public Troop Troop { get; set; }
+        public virtual Troop Troop { get; set; }
 
         /// <summary>
         /// Список оценок студента
         /// </summary>
-        public List<Assessment> Assessments { get; set; } 
+        public virtual List<Assessment> Assessments { get; set; } 
 	}
 }

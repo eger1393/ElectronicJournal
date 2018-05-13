@@ -33,7 +33,7 @@ namespace ElectronicJournal.WebUI.Controllers
 				Discipline = Discipline // хотя как вариант выводить в их перед таблицей Взвод - Название дисциплины
 
 			};
-            ViewBag.Days = new Troop().DaysArrival;
+            ViewBag.Days = /*model.Students.FirstOrDefault().Troop*/new Troop().DaysArrival;
             return View(model);
         }
 		[HttpPost]

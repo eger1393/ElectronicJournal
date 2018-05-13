@@ -14,8 +14,8 @@ namespace ElectronicJournal.Domain.Entites
         [Key]
         public int PrepodId { get; set; }
 
-        public List<Troop> Troops { get; set; }
-        public List<Discipline> Disciplines { get; set; }
+        public virtual List<Troop> Troops { get; set; }
+        public virtual List<Discipline> Disciplines { get; set; }
         public Prepod()
         {
             FirstName = "";
