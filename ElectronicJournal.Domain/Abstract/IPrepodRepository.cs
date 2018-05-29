@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ElectronicJournal.Domain.Abstract
 {
-    public interface ITroopRepository
+    public interface IPrepodRepository
     {
-        IQueryable<Entites.Troop> troops { get; }
+        IQueryable<Entites.Prepod> Prepods { get; }
     }
 }

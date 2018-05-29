@@ -1,0 +1,111 @@
+﻿@model ElectronicJournal.WebUI.Models.PersonalArealViewModel
+
+@{
+    Layout = null;
+}
+
+<link href="~/Content/jsTree/themes/default/style.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.0.0.js"></script>
+<script src="~/Scripts/jsTree3/jstree.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PersonalArea</title>
+</head>
+<body>
+    <div class="navbar navbar-inverse" role="navigation">
+        <a class="navbar-brand" href="#">Главная</a>
+    </div>
+    <div class="row panel">
+        <div id="jstree" class="jstree-no-icons">
+
+        </div>
+        <div class="col-xs-8">
+            <table class="table" id="mytable">
+                <thead>
+                    <tr>
+                        <td>Описание предемета</td>
+                        <td>Кнопки</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <input type="text" id="discName" />
+            <button value="add" id="add">Добавить</button>
+        </div>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+    var selectedTroopId
+    $(function () {
+        SetJsTree();
+        $('#add').click(OnClickAdd);
+        setTimeout(function (){ $('#jstree').find('a').first().trigger('click') }, 500);
+        //$('#jstree').find('a').first().trigger('click'); //Костыли наше все =) имитирую клик по 1 элементу в списке
+    });
+    function SetJsTree() {
+        $('#jstree').children().remove();
+        $('#jstree')
+            .jstree({
+                "plugins": ["sort", "json_data"],
+                'core': {
+                    'data': {
+                        'url': function (node) {
+                            return '/Admin/GetJsonMenu?PrepodId=' + @Model.Prepod.PrepodId;
+                        },
+                        'data': function (node) {
+                            return { 'id': node.id };
+                        }
+                    }
+                }
+            })
+            .on('changed.jstree', function (e, data) {
+                $.getJSON('/Admin/GetJsonDiscipline?TroopId=' + data.node.id + '&PrepodId=' + @Model.Prepod.PrepodId, {}, SetTable);
+                selectedTroopId = data.node.id;
+            });
+    }
+    function SetTable(json) {
+        $('#mytable').children('tbody').children().remove();
+        var htmlTable = '';
+        for (var i = 0; i < json.length; ++i) {
+            htmlTable += '<tr><td>' + json[i].Name + '</td><td>';
+            htmlTable += '<button name="tableButton" data-id="' + json[i].Id + '"value="delete" >Удалить</button></td></tr>';
+        }
+        $('#mytable').children('tbody').append(htmlTable);
+        $('#mytable').find('button').click(OnClickDelete);
+    }
+    function OnClickDelete() {
+        var Id = $(this).data('id');
+        $.ajax({
+            type: 'post',
+            url: 'DeleteDiscipline',
+            data: { 'Id': Id },
+            success: function () {
+                $.getJSON('/Admin/GetJsonDiscipline?TroopId=' + selectedTroopId + '&PrepodId=' + @Model.Prepod.PrepodId, {}, SetTable);
+            }
+        })
+    }
+    function OnClickAdd() {
+        var name = $('#discName').val();
+        $.ajax({
+            type: 'post',
+            url: 'AddDiscipline',
+            data: {
+                'Name': name,
+                'PrepodId': @Model.Prepod.PrepodId,
+                'TroopId': selectedTroopId
+            },
+            success: function () {
+                $.getJSON('/Admin/GetJsonDiscipline?TroopId=' + selectedTroopId + '&PrepodId=' + @Model.Prepod.PrepodId, {}, SetTable);
+            }
+        })
+        $('#discName').val('');
+    }
+</script>

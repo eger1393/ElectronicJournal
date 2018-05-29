@@ -19,7 +19,7 @@ namespace ElectronicJournal.Domain.Concrete
                 item.CreateAssessment();
             }
         }
-        public IEnumerable<Student> students { get { return context.Students; } }
+        public IQueryable<Student> students { get { return context.Students; } }
 		public void SaveChanges(Student student)
 		{
 			if(student.Id == 0)

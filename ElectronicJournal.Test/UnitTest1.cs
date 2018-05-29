@@ -28,7 +28,7 @@ namespace ElectronicJournal.Test
 				new Student {FIO = "Тест 4", Troop = new Troop {Number = "1"}},
 				new Student {FIO = "Тест 5", Troop = new Troop {Number = "2"}},
 				new Student {FIO = "Тест 6", Troop = new Troop {Number = "3"}},
-			});
+			}.AsQueryable());
 			//Mock<ITroopRepository> troop = new Mock<ITroopRepository>();
 			//troop.Setup(m => m.troops).Returns(new Troop[]
 			//{

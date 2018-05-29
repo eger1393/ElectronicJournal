@@ -18,12 +18,12 @@ namespace ElectronicJournal.Domain.Entites
         public virtual List<Discipline> Disciplines { get; set; }
         public Prepod()
         {
-            FirstName = "";
-            MiddleName = "";
-            LastName = "";
-            Coolness = "";
-            Troops = new List<Troop>();
-            Disciplines = new List<Discipline>();
+            //FirstName = "";
+            //MiddleName = "";
+            //LastName = "";
+            //Coolness = "";
+            //Troops = new List<Troop>();
+            //Disciplines = new List<Discipline>();
         }
 
         public string initials()

@@ -16,6 +16,8 @@ namespace ElectronicJournal.WebUI.Infrastructure
 			kernel.Bind<IStudentRepository>().To<EFStudentRepository>();
 
             kernel.Bind<ITroopRepository>().To<EFTroopRepository>();
+            kernel.Bind<IPrepodRepository>().To<EFPrepodRepository>();
+            kernel.Bind<IDisciplineRepository>().To<EFDisciplineRepository>();
         }
 		public NinjectDependencyResolver(IKernel kernelParam)
 		{

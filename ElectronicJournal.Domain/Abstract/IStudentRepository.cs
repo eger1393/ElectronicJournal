@@ -9,7 +9,7 @@ namespace ElectronicJournal.Domain.Abstract
 {
 	public interface IStudentRepository
 	{
-		IEnumerable<Student> students { get;}
+		IQueryable<Student> students { get;}
 		void SaveChanges(Student student);
 	}
 }

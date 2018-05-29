@@ -7,24 +7,27 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ElectronicJournal.Domain.Entites
 {
-   
+
 
     public class Troop
     {
-        static string[] DaysArriv =  { "Пн","Вт", "Ср", "Чт", "Пт", };
+        static string[] DaysArriv = { "Пн", "Вт", "Ср", "Чт", "Пт", };
         public Troop()
         {
             Day = DaysArriv[0];
             DaysArrival = new List<DateTime>();
             ScheduleGeneration(DateTime.MinValue);
-            Disciplines = new List<Discipline>();
-            for (int i = 0; i < 3; i++)
+            if (Disciplines == null)
             {
-                Disciplines.Add(new Discipline(DaysArrival.Count) { Name = i.ToString() });
+                Disciplines = new List<Discipline>();
+                for (int i = 0; i < 3; i++)
+                {
+                    Disciplines.Add(new Discipline(DaysArrival.Count) { Name = i.ToString() });
+                }
             }
-               
-            
-          
+
+
+
         }
 
         [Key]
@@ -42,16 +45,16 @@ namespace ElectronicJournal.Domain.Entites
         /// <summary>
         /// День прихода
         /// </summary>
-        public string Day{ get; set; }
+        public string Day { get; set; }
         /// <summary>
         /// Список дней прихода взвода
         /// </summary>
-        public List<DateTime> DaysArrival{ get; set; }
+        public List<DateTime> DaysArrival { get; set; }
 
-		/// <summary>
-		/// Список дисциплин изучающихся взводом
-		/// </summary>
-		public virtual List<Discipline> Disciplines { get; set; }
+        /// <summary>
+        /// Список дисциплин изучающихся взводом
+        /// </summary>
+        public virtual List<Discipline> Disciplines { get; set; }
 
         public int? PrepodId { get; set; }
         [System.ComponentModel.DataAnnotations.Schema.ForeignKey("PrepodId")]
@@ -79,14 +82,31 @@ namespace ElectronicJournal.Domain.Entites
                                     new DateTime(DateTime.Today.Year,5,1),  new DateTime(DateTime.Today.Year,5,2), new DateTime(DateTime.Today.Year,5,9),
                                     new DateTime(DateTime.Today.Year,6,12),  new DateTime(DateTime.Today.Year,11,4) };
 
-           
+
             foreach (var item in holidays)
             {
-                if(DaysArrival.Find(c => c == item) != null )
+                if (DaysArrival.Find(c => c == item) != null)
                 {
                     DaysArrival.Remove(item);
                 }
             }
+        }
+
+        public Troop CreateNewTroopOnliDisciplinesOnPrepod(int? prepodId)
+        {
+            Troop temp = new Troop()
+            {
+                TroopId = this.TroopId,
+                Students = this.Students,
+                Day = this.Day,
+                DaysArrival = this.DaysArrival,
+                Number = this.Number,
+                Prepod = this.Prepod,
+                PrepodId = this.PrepodId,
+                Disciplines = this.Disciplines.Where(ob => ob.PrepodId == prepodId).ToList()
+            };
+
+            return temp;
         }
     }
 }

@@ -12,11 +12,11 @@ namespace ElectronicJournal.Domain.Entites
     {
         public Discipline()
         {
-            Theme = new List<Theme>();
-            for (int i = 0; i < 16; i++)
-            {
-                Theme.Add(new Theme() { Title = "Тема"+i });
-            }
+            //Theme = new List<Theme>();
+            //for (int i = 0; i < 16; i++)
+            //{
+            //    Theme.Add(new Theme() { Title = "Тема" + i });
+            //}
         }
 
         public Discipline(int count_theme)
@@ -24,7 +24,7 @@ namespace ElectronicJournal.Domain.Entites
             Theme = new List<Theme>();
             for (int i = 0; i < count_theme; i++)
             {
-                Theme.Add(new Theme() { Title = "Тема" + i } );
+                Theme.Add(new Theme() { Title = "Тема" + i });
             }
         }
 
@@ -35,7 +35,7 @@ namespace ElectronicJournal.Domain.Entites
         /// Список тем
         /// </summary>
         public virtual List<Theme> Theme { get; set; }
-		public string Name { get; set; }
+        public string Name { get; set; }
 
         public int? PrepodId { get; set; }
         [System.ComponentModel.DataAnnotations.Schema.ForeignKey("PrepodId")]

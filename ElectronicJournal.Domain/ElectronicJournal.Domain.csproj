@@ -48,9 +48,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IDisciplineRepository.cs" />
+    <Compile Include="Abstract\IPrepodRepository.cs" />
     <Compile Include="Abstract\ITroopRepository.cs" />
     <Compile Include="Abstract\IStudentRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
+    <Compile Include="Concrete\EFDisciplineRepository.cs" />
+    <Compile Include="Concrete\EFPrepodRepository.cs" />
     <Compile Include="Concrete\EFStudentRepository.cs" />
     <Compile Include="Concrete\EFTroopRepository.cs" />
     <Compile Include="Entites\Assessment.cs" />
