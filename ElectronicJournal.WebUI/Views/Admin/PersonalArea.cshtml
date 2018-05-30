@@ -25,7 +25,7 @@
         <div id="jstree" class="jstree-no-icons">
 
         </div>
-        <div class="col-xs-8">
+        <div class="col-xs-8" style="float: left;">
             <table class="table" id="mytable">
                 <thead>
                     <tr>
@@ -33,20 +33,46 @@
                         <td>Кнопки</td>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody id="DiscilineTBody"></tbody>
+                <tr>
+                    <td><input type="text" id="discName" /></td>
+                    <td><button value="add" id="add">Добавить</button></td>
+                </tr>
             </table>
-            <input type="text" id="discName" />
-            <button value="add" id="add">Добавить</button>
+        </div>
+        <div class="col-xs-8" style="float: right; display: none" id="infoTable">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>Название темы</td>
+                        <td>Кол-во часов</td>
+                        <td>Дата</td>
+                        <td>Кнопки</td>
+                    </tr>
+                </thead>
+                <tbody id="InfoTBody"></tbody>
+                <tr>
+                    <td><input type="text" id="ThemeTitle" required/></td>
+                    <td><input type="number" id="ThemeCount" min="1" max="40" required/></td>
+                    <td><input type="date" id="ThemeDate" min="2000-01-01" max="2100-01-01" required/></td>
+                    <td><button value="ThemeAdd">Добавить</button></td>
+                </tr>
+            </table>
+            <br />
+            <button value="closeInfo">Закрыть</button>
         </div>
     </div>
 </body>
 </html>
 
 <script type="text/javascript">
-    var selectedTroopId
+    var selectedTroopId;
+    var DisciplineId;
     $(function () {
         SetJsTree();
         $('#add').click(OnClickAdd);
+        $('button[value="ThemeAdd"]').click(OnClickThemeAdd);
+        $('button[value="closeInfo"]').click(OnClickCloseInfo);
         setTimeout(function (){ $('#jstree').find('a').first().trigger('click') }, 500);
         //$('#jstree').find('a').first().trigger('click'); //Костыли наше все =) имитирую клик по 1 элементу в списке
     });
@@ -69,20 +95,40 @@
             .on('changed.jstree', function (e, data) {
                 $.getJSON('/Admin/GetJsonDiscipline?TroopId=' + data.node.id + '&PrepodId=' + @Model.Prepod.PrepodId, {}, SetTable);
                 selectedTroopId = data.node.id;
+                OnClickCloseInfo();
             });
     }
     function SetTable(json) {
-        $('#mytable').children('tbody').children().remove();
+
+        $('#DiscilineTBody').children().remove();
         var htmlTable = '';
         for (var i = 0; i < json.length; ++i) {
             htmlTable += '<tr><td>' + json[i].Name + '</td><td>';
+            htmlTable += '<button name="tableButton" data-id="' + json[i].Id + '"value="info">Информация</button>';
             htmlTable += '<button name="tableButton" data-id="' + json[i].Id + '"value="delete" >Удалить</button></td></tr>';
         }
-        $('#mytable').children('tbody').append(htmlTable);
-        $('#mytable').find('button').click(OnClickDelete);
+        $('#DiscilineTBody').append(htmlTable);
+        $('#mytable button[value="delete"]').click(OnClickDelete);
+        $('#mytable button[value="info"]').click(OnClickInfo);
+
+    }
+    function SetInfoTable(json) {
+        $('#InfoTBody').children().remove();
+        var htmlTable = '';
+            for (var i = 0; i < json.length; ++i) {
+                htmlTable += '<tr><td>' + json[i].Title + '</td>';
+                htmlTable += '<td>' + json[i].Count + '</td>';
+                htmlTable += '<td>' + json[i].Date + '</td>';
+                htmlTable += '<td><button name="tableButton" data-id="' + json[i].Id + '"value="delete" >Удалить</button></td></tr>';
+            }
+        $('#InfoTBody').append(htmlTable);
+        $('#InfoTBody button[value="delete"]').click(OnClickInfoDelete);
     }
     function OnClickDelete() {
         var Id = $(this).data('id');
+        if (Id === DisciplineId) {
+            OnClickCloseInfo();
+        }
         $.ajax({
             type: 'post',
             url: 'DeleteDiscipline',
@@ -94,18 +140,73 @@
     }
     function OnClickAdd() {
         var name = $('#discName').val();
-        $.ajax({
-            type: 'post',
-            url: 'AddDiscipline',
-            data: {
-                'Name': name,
-                'PrepodId': @Model.Prepod.PrepodId,
-                'TroopId': selectedTroopId
-            },
-            success: function () {
-                $.getJSON('/Admin/GetJsonDiscipline?TroopId=' + selectedTroopId + '&PrepodId=' + @Model.Prepod.PrepodId, {}, SetTable);
-            }
-        })
-        $('#discName').val('');
+        if (name === '') {
+            alert('Введите название');
+        } else {
+            $.ajax({
+                type: 'post',
+                url: 'AddDiscipline',
+                data: {
+                    'Name': name,
+                    'PrepodId': @Model.Prepod.PrepodId,
+                    'TroopId': selectedTroopId
+                },
+                success: function () {
+                    $.getJSON('/Admin/GetJsonDiscipline?TroopId=' + selectedTroopId + '&PrepodId=' + @Model.Prepod.PrepodId, {}, SetTable);
+                }
+            })
+            $('#discName').val('');
+        }
     }
+    function OnClickInfo() {
+        $('#infoTable').css('display', 'block');
+        DisciplineId = $(this).data('id');
+        $.getJSON('/Admin/GetJsonTheme?DisciplineId=' + DisciplineId, {}, SetInfoTable);
+        $
+    }
+    function OnClickCloseInfo() {
+        $('#infoTable').css('display', 'none');
+        $('#ThemeTitle').val('');
+        $('#ThemeCount').val('');
+        $('#ThemeDate').val('');
+    }
+    function OnClickInfoDelete() {
+        var ThemeId = $(this).data('id');
+         $.ajax({
+                type: 'post',
+                url: 'DeleteTheme',
+                data: {
+                 'Id': ThemeId
+                },
+                success: function () {
+                    $.getJSON('/Admin/GetJsonTheme?DisciplineId=' + DisciplineId, {}, SetInfoTable);
+                }
+            })
+    }
+    function OnClickThemeAdd() {
+        var ThemeTitle = $('#ThemeTitle').val();
+        var ThemeCount = $('#ThemeCount').val();
+        var ThemeDate = $('#ThemeDate').val();
+        if (!(ThemeCount > 0 & new Date(ThemeDate) > new Date('2000-01-01') & new Date(ThemeDate) < new Date('2100-01-01') & ThemeTitle !='')) {
+            alert('Ошибка валидации!');
+        } else {
+            $.ajax({
+                type: 'post',
+                url: 'AddTheme',
+                data: {
+                    'DisciplineId': DisciplineId,
+                    'Title': ThemeTitle,
+                    'Count': ThemeCount,
+                    'Date': ThemeDate
+                },
+                success: function () {
+                    $.getJSON('/Admin/GetJsonTheme?DisciplineId=' + DisciplineId, {}, SetInfoTable);
+                }
+            })
+            $('#ThemeTitle').val('');
+            $('#ThemeCount').val('');
+            $('#ThemeDate').val('');
+        }
+    }
+
 </script>

@@ -11,9 +11,26 @@ namespace ElectronicJournal.Domain.Concrete
     {
         EFDbContext context = new EFDbContext();
         public IQueryable<Discipline> Disciplines { get { return context.Disciplines; } }
+        public void DeleteTheme(Theme item)
+        {
+            context.Themes.Remove(item);
+            context.SaveChanges();
+        }
+        public void AddTheme(int DisciplineId, string Title, int Count, DateTime Date)
+        {
+            context.Themes.Add(new Theme
+            {
+                AmountHours = Count,
+                Day = Date,
+                DisciplineId = DisciplineId,
+                Title = Title
+            });
+            context.SaveChanges();
+        }
         public void DeleteDiscipline(Discipline item)
         {
             // TODO узнать где хранятся оценки и реализовать удалене оценок при их наличии
+            //item.Theme.ToList().ForEach(ob => DeleteTheme(ob)); 
             List<Theme> themes = item.Theme.ToList();
             foreach (var theme in themes)
             {
@@ -32,5 +49,6 @@ namespace ElectronicJournal.Domain.Concrete
             });
             context.SaveChanges();
         }
+
     }
 }
