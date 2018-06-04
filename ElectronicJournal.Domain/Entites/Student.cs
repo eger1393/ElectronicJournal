@@ -42,7 +42,7 @@ namespace ElectronicJournal.Domain.Entites
             {
                 foreach (var item2 in item.Theme)
                 {
-                    Assessments.Add(new Assessment(item2));
+                    Assessments.Add(new Assessment(Id ,item2));
                 }
             }
            

@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ElectronicJournal.Domain.Concrete.EFDisciplineRepository" Collapsed="true">
+    <Position X="6.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAMAAAAAAAAAAQAAAAAAAAAgAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Concrete\EFDisciplineRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ElectronicJournal.Domain.Concrete.EFDbContext" Collapsed="true">
+    <Position X="4.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAABAAAAAAAAQQAAAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Concrete\EFDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ElectronicJournal.Domain.Concrete.EFPrepodRepository" Collapsed="true">
+    <Position X="9.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Concrete\EFPrepodRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ElectronicJournal.Domain.Concrete.EFStudentRepository" Collapsed="true">
+    <Position X="7.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Concrete\EFStudentRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ElectronicJournal.Domain.Concrete.EFTroopRepository" Collapsed="true">
+    <Position X="10.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Concrete\EFTroopRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ElectronicJournal.Domain.Entites.Assessment" Collapsed="true">
+    <Position X="6.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAABAAAQIAAAAAAAAAAAAAAAAAAAAAECAAA=</HashCode>
+      <FileName>Entites\Assessment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ElectronicJournal.Domain.Entites.DbInitializer" Collapsed="true">
+    <Position X="4.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entites\DbInitializer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ElectronicJournal.Domain.Entites.Discipline" Collapsed="true">
+    <Position X="6.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAgAAAAAAAAQAAAAAAQAAAAAAAAAEAAAAAgAAIA=</HashCode>
+      <FileName>Entites\Discipline.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ElectronicJournal.Domain.Entites.Prepod" Collapsed="true">
+    <Position X="9.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gBEAAMAAAAAAACAEQAAQAAAAgAAAAAgAAAAAAAAAIIg=</HashCode>
+      <FileName>Entites\Prepod.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ElectronicJournal.Domain.Entites.Student" Collapsed="true">
+    <Position X="7.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgACAAgAAAAAAAAAAAAAAAAAAAAAAIAAAAEAgAAAAIA=</HashCode>
+      <FileName>Entites\Student.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ElectronicJournal.Domain.Entites.Theme" Collapsed="true">
+    <Position X="10.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAIBAEAAACAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Entites\Theme.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ElectronicJournal.Domain.Entites.Troop" Collapsed="true">
+    <Position X="10.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAMAAAgAIBACAAAAQEAAAAAAAAAAAAAAAAIAEAgAAAA=</HashCode>
+      <FileName>Entites\Troop.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

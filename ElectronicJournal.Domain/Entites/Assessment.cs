@@ -13,9 +13,10 @@ namespace ElectronicJournal.Domain.Entites
         {
            
         }
-        public Assessment(Theme temp)
+        public Assessment(int Id,Theme temp)
 		{
             Theme = temp;
+            StudentId = Id;
 		}
         [Key]
         public int AssessmentId { get; set;}
