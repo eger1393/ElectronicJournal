@@ -159,13 +159,12 @@
         }
     }
     function OnClickInfo() {
-        $('#infoTable').css('display', 'block');
+        $('#infoTable').show('slow')//css('display', 'block');
         DisciplineId = $(this).data('id');
         $.getJSON('/Admin/GetJsonTheme?DisciplineId=' + DisciplineId, {}, SetInfoTable);
-        $
     }
     function OnClickCloseInfo() {
-        $('#infoTable').css('display', 'none');
+        $('#infoTable').hide('slow');//css('display', 'none');
         $('#ThemeTitle').val('');
         $('#ThemeCount').val('');
         $('#ThemeDate').val('');
