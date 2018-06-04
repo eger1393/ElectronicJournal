@@ -9,9 +9,13 @@ namespace ElectronicJournal.Domain.Entites
 {
     public class Assessment
     {
-		public Assessment()
+        public Assessment()
+        {
+           
+        }
+        public Assessment(Theme temp)
 		{
-
+            Theme = temp;
 		}
         [Key]
         public int AssessmentId { get; set;}

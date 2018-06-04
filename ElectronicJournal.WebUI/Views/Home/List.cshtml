@@ -32,7 +32,7 @@
                     @Html.HiddenFor(m => m.Students[i].Id);
                     @Html.HiddenFor(m => m.Students[i].Troop);
                     @Html.HiddenFor(m => m.Students[i].TroopId);
-                    @*@Html.HiddenFor(m => m.Students[i].Assessments);*@
+                    @Html.HiddenFor(m => m.Students[i].Assessments);
                     <tr>
                         <td>@(i + 1)</td>@*Номер в списке*@
                         <td>@Html.DisplayFor(m => m.Students[i].FIO)</td>@*ФИО*@

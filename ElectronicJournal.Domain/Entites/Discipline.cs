@@ -19,13 +19,14 @@ namespace ElectronicJournal.Domain.Entites
             //}
         }
 
-        public Discipline(int count_theme)
+        public Discipline(List<DateTime> List_Themes)
         {
             Theme = new List<Theme>();
-            for (int i = 0; i < count_theme; i++)
+            foreach (var item in List_Themes)
             {
-                Theme.Add(new Theme() { Title = "Тема" + i });
+                Theme.Add(new Theme(item.Date) { Title = "Тема" + item.Second });
             }
+            
         }
 
         [Key]

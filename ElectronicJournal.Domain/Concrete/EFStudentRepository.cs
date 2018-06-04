@@ -17,6 +17,7 @@ namespace ElectronicJournal.Domain.Concrete
             foreach (var item in students)
             {
                 item.CreateAssessment();
+                
             }
         }
         public IQueryable<Student> students { get { return context.Students; } }
@@ -33,7 +34,7 @@ namespace ElectronicJournal.Domain.Concrete
 				{
 					dbEntry.FIO = student.FIO;
 					dbEntry.Assessments = student.Assessments;
-					dbEntry.Troop = student.Troop;
+					//dbEntry.Troop = student.Troop;
 					dbEntry.TroopId = student.TroopId;
 				}
 			}
