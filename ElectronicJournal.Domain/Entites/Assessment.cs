@@ -19,10 +19,14 @@ namespace ElectronicJournal.Domain.Entites
 		}
         [Key]
         public int AssessmentId { get; set;}
-		/// <summary>
-		/// Оценка
-		/// </summary>
-		public string Grade { get; set; }
+        /// <summary>
+        /// Оценка
+        /// </summary>
+        /// 
+        public int? StudentId { get; set; }
+        [System.ComponentModel.DataAnnotations.Schema.ForeignKey("StudentId")]
+        public virtual Student Student { get; set; }
+        public string Grade { get; set; }
 		public int? ThemeId { get; set; }
 		[System.ComponentModel.DataAnnotations.Schema.ForeignKey("ThemeId")]
 		public virtual Theme Theme { get; set; }

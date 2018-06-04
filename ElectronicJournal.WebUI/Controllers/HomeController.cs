@@ -61,7 +61,7 @@ namespace ElectronicJournal.WebUI.Controllers
             //	}
             //}
             //ViewBag.Days = /*model.Students.FirstOrDefault().Troop*/new Troop().DaysArrival;
-            var temp = repository_students.students.First();
+            //var temp = repository_students.students.First();
             return View(model);
 		}
 		[HttpPost]
