@@ -13,14 +13,23 @@ namespace ElectronicJournal.Domain.Entites
 		{
             Assessments = new List<Assessment>();
         }
-
+        private Troop troop;
         [Key]
         public int Id { get; set; }
         public string FIO { get; set; }
 
         public int? TroopId { get; set; }
         [System.ComponentModel.DataAnnotations.Schema.ForeignKey("TroopId")]
-        public virtual Troop Troop { get; set; }
+        public virtual Troop Troop {
+            get
+            {
+                return troop;
+            }
+            set
+            {
+                troop = value;
+            }
+        }
 
         /// <summary>
         /// Список оценок студента
@@ -29,10 +38,14 @@ namespace ElectronicJournal.Domain.Entites
 
         public void CreateAssessment()
         {
-            for (int i = 0; i < Troop.DaysArrival.Count; i++)
+            foreach (var item in Troop.Disciplines)
             {
-                Assessments.Add(new Assessment());
+                foreach (var item2 in item.Theme)
+                {
+                    Assessments.Add(new Assessment(item2));
+                }
             }
+           
         }
 
     }

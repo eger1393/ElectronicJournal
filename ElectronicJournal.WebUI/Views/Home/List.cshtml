@@ -32,16 +32,24 @@
                     @Html.HiddenFor(m => m.Students[i].Id);
                     @Html.HiddenFor(m => m.Students[i].Troop);
                     @Html.HiddenFor(m => m.Students[i].TroopId);
-                    @*@Html.HiddenFor(m => m.Students[i].Assessments);*@
+                    @Html.HiddenFor(m => m.Students[i].Assessments);
                     <tr>
                         <td>@(i + 1)</td>@*Номер в списке*@
                         <td>@Html.DisplayFor(m => m.Students[i].FIO)</td>@*ФИО*@
                         @for (int j = 0; j < Model.DaysArrival.Count(); j++)//бред
                         {
                             <td>
-                                @Html.DropDownListFor(m => m.Students[i].Assessments[j].Grade, new SelectList(new string[]
-                                           { "","2","3","4","5","н","б" }))
-                            </td>
+                              @Html.DropDownListFor(m => m.Students[i].Assessments[j].Grade, new List<SelectListItem>
+                                {
+                                new SelectListItem {Text = "", Value="",Selected = Model.Students[i].Assessments[j].Grade == ""? true : false },
+                                new SelectListItem {Text = "2", Value="2",Selected = Model.Students[i].Assessments[j].Grade == "2"? true : false },
+                                new SelectListItem {Text = "3", Value="3",Selected = Model.Students[i].Assessments[j].Grade == "3"? true : false },
+                                new SelectListItem {Text = "4", Value="4",Selected = Model.Students[i].Assessments[j].Grade == "4"? true : false },
+                                new SelectListItem {Text = "5", Value="5",Selected = Model.Students[i].Assessments[j].Grade == "5"? true : false },
+                                new SelectListItem {Text = "б", Value="б",Selected = Model.Students[i].Assessments[j].Grade == "б"? true : false },
+                                new SelectListItem {Text = "н", Value="н",Selected = Model.Students[i].Assessments[j].Grade == "н"? true : false }
+                                })
+                        </td>
                         }
                     </tr>
                 }

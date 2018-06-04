@@ -22,7 +22,7 @@ namespace ElectronicJournal.Domain.Entites
                 Disciplines = new List<Discipline>();
                 for (int i = 0; i < 3; i++)
                 {
-                    Disciplines.Add(new Discipline(DaysArrival.Count) { Name = i.ToString() });
+                    Disciplines.Add(new Discipline(DaysArrival) { Name = i.ToString() });
                 }
             }
 

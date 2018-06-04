@@ -9,11 +9,14 @@ namespace ElectronicJournal.Domain.Entites
 {
     public class Theme
     {
+        public Theme(DateTime Date)
+        {
+            Day = Date;
+        }
         public Theme()
         {
-          
+           
         }
-
         [Key]
         public int ThemeId { get; set; }
 
