@@ -41,12 +41,15 @@ namespace ElectronicJournal.Domain.Concrete
         }
         public void AddDiscipline(string Name, int? PrepodId, int? TroopId)
         {
-            context.Disciplines.Add(new Discipline
-            {
-                Name = Name,
-                PrepodId = PrepodId,
-                TroopId = TroopId
-            });
+			Troop tempTroop = context.Troops.First(ob => ob.TroopId == TroopId);
+			Discipline temp = new Discipline(tempTroop.DaysArrival)
+			{
+				Name = Name,
+				PrepodId = PrepodId,
+				TroopId = TroopId
+			};
+			
+			context.Disciplines.Add(temp);
             context.SaveChanges();
         }
 

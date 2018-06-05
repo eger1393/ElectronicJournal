@@ -22,7 +22,7 @@ namespace ElectronicJournal.WebUI.Controllers
         // GET: Admin
         public JsonResult GetJsonMenu(int PrepodId, int? ParentId = null)
         {
-            return Json(troopRepository.troops.Where(ob => ob.Disciplines.Where(dis => dis.PrepodId == PrepodId).Count() != 0).Select(p => new
+            return Json(troopRepository.troops/*.Where(ob => ob.Disciplines.Where(dis => dis.PrepodId == PrepodId).Count() != 0)*/.Select(p => new
             {
                 id = p.TroopId.ToString(),
                 parent = "#",
@@ -70,10 +70,10 @@ namespace ElectronicJournal.WebUI.Controllers
             }
             foreach (var item in troopRepository.troops) // TODO немного не то, подумать как переделать, сейчас мы проходим по всем взводам и выбираем из них только нужные нам, создавая копию взвода и кладем теда только нужные темы
             {
-                if (item.Disciplines.FindAll(ob => ob.PrepodId == model.Prepod.PrepodId).Count != 0)
-                {
+                //if (item.Disciplines.FindAll(ob => ob.PrepodId == model.Prepod.PrepodId).Count != 0)
+                //{
                     model.Troops.Add(item.CreateNewTroopOnliDisciplinesOnPrepod(model.Prepod.PrepodId));
-                }
+                //}
             }
             return View(model);
         }

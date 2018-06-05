@@ -1,4 +1,4 @@
-﻿@model ElectronicJournal.Domain.Abstract.ITroopRepository
+﻿@model List<ElectronicJournal.Domain.Entites.Troop>
 @{
     Layout = null;
 }
@@ -11,7 +11,7 @@
 
 <div id="jstree">
     <ul class="jstree-no-icons">
-        @foreach (var item in Model.troops)
+        @foreach (var item in Model)
         {
             <li class=@String.Concat("jstree-no-icons",item.Number == (string)ViewBag.SelectedTroop? " jstree-open" : "")>
                 @Html.RouteLink(item.Number, new

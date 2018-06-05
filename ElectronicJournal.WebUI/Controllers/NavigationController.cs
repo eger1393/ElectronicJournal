@@ -17,9 +17,9 @@ namespace ElectronicJournal.WebUI.Controllers
         // GET: Navigation
         public PartialViewResult Menu(string Troop = null)
         {
-			ViewBag.SelectedTroop = Troop;
+			List<ElectronicJournal.Domain.Entites.Troop>troops = repository.troops.ToList();
 
-            return PartialView(repository);
+            return PartialView(troops);
         }
     }
 }

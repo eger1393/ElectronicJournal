@@ -30,7 +30,6 @@
                 {
                     @Html.HiddenFor(m => m.Students[i].FIO);
                     @Html.HiddenFor(m => m.Students[i].Id);
-                    @Html.HiddenFor(m => m.Students[i].Troop);
                     @Html.HiddenFor(m => m.Students[i].TroopId);
                     @*@Html.HiddenFor(m => m.Students[i].Assessments);*@
                     <tr>
@@ -39,6 +38,8 @@
                         @for (int j = 0; j < Model.DaysArrival.Count(); j++)//бред
                         {
                             <td>
+                                @Html.HiddenFor(ob => ob.Students[i].Assessments[j].AssessmentId)
+                                @Html.HiddenFor(ob => ob.Students[i].Assessments[j].ThemeId)
                               @Html.DropDownListFor(m => m.Students[i].Assessments[j].Grade, new List<SelectListItem>
                                 {
                                 new SelectListItem {Text = "", Value="",Selected = Model.Students[i].Assessments[j].Grade == ""? true : false },

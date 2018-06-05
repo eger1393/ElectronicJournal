@@ -23,7 +23,7 @@ namespace ElectronicJournal.WebUI.Controllers
             repository_troops = troopsRepository;
        }
 
-		public ViewResult List(string Troop = null, string Discipline = null)
+		public ViewResult List(string Troop = null, string Discipline = "0")
 		{
 			//TODOНазвание дисциплины нужно для вывода оценок
 			HomeListViewModel model = new HomeListViewModel
@@ -35,33 +35,15 @@ namespace ElectronicJournal.WebUI.Controllers
 				Discipline = Discipline, // хотя как вариант выводить в их перед таблицей Взвод - Название дисциплины
 				DaysArrival = new Troop().DaysArrival
 			};
-
-
-            //if (model.Students.First().Assessments.Count() == 0)
-            //{
-            //	foreach (var Dis in model.Students.First().Troop.Disciplines)
-            //	{
-            //		foreach (var item in model.Students)
-            //		{
-            //			item.Assessments = new List<Assessment>();
-            //			for (int i = 0; i < model.Students.First().Troop.DaysArrival.Count(); i++)
-            //			{
-            //				item.Assessments.Add(new Assessment { Theme = new Theme { Discipline = Dis } });
-            //			}
-            //		}
-            //	}
-            //}
-
-            //Говнокод
-            //if (Discipline != null)
-            //{
-            //	foreach (var item in model.Students)
-            //	{
-            //		item.Assessments = item.Assessments.Where(ob => ob.Theme.Discipline.Name == Discipline).ToList();
-            //	}
-            //}
-            //ViewBag.Days = /*model.Students.FirstOrDefault().Troop*/new Troop().DaysArrival;
-            //var temp = repository_students.students.First();
+			//if(model.Students.First().Troop.Disciplines.Count() == 0)
+			//{
+			//	model.Students.First().Troop.TroopFactory();
+			//}
+			//foreach (var item in model.Students)
+			//{
+			//	item.Assessments = item.Assessments.Where(ob => ob.Theme.Discipline.Name == model.Discipline).ToList();
+			//}
+			
             return View(model);
 		}
 		[HttpPost]
@@ -70,7 +52,7 @@ namespace ElectronicJournal.WebUI.Controllers
             
             foreach (var item in students)
             {
-                item.Troop = repository_troops.troops.FirstOrDefault(u => u.TroopId == item.TroopId);
+                //item.Troop = repository_troops.troops.FirstOrDefault(u => u.TroopId == item.TroopId);
 
                 if (!(item.Equals(repository_students.students.FirstOrDefault(u => u.Id == item.Id))))
                 {

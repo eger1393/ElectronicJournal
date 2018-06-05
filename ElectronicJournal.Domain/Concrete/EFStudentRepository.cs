@@ -33,7 +33,18 @@ namespace ElectronicJournal.Domain.Concrete
 				if(dbEntry != null)
 				{
 					dbEntry.FIO = student.FIO;
-					dbEntry.Assessments = student.Assessments;
+					foreach (var item in student.Assessments)
+					{
+						if(item.AssessmentId != 0)
+						{
+							dbEntry.Assessments.FirstOrDefault(ob => ob.AssessmentId == item.AssessmentId).Grade = item.Grade;
+						}
+						else // TODO Заплатка с ИД темы переделать!
+						{
+							dbEntry.Assessments.Add(item);
+						}
+					}
+					//dbEntry.Assessments = student.Assessments;
 					//dbEntry.Troop = student.Troop;
 					dbEntry.TroopId = student.TroopId;
 				}
