@@ -36,6 +36,25 @@ namespace ElectronicJournal.Domain.Entites
         /// </summary>
         public virtual List<Assessment> Assessments { get; set; } 
 
+		public List<Assessment> CreateAssessment(Discipline discipline)
+		{
+			List<Assessment> res = new List<Assessment>();
+			foreach (var item in discipline.Theme)
+			{
+				Assessment temp = new Assessment()
+				{
+					Grade = "",
+					StudentId = this.Id,
+					Student = this,
+					Theme = item,
+					ThemeId = item.ThemeId
+				};
+				res.Add(temp);
+				Assessments.Add(temp);
+			}
+			return res;
+		}
+
         public void CreateAssessment()
         {
             foreach (var item in Troop.Disciplines)

@@ -91,9 +91,10 @@ namespace ElectronicJournal.WebUI.Controllers
             }
         }
         [HttpPost]
-        public void AddDiscipline(string Name, int? PrepodId, int? TroopId)
+        public void AddDiscipline(string Name, int PrepodId, int TroopId)
         {
-            disciplineRepository.AddDiscipline(Name, PrepodId, TroopId);
+			troopRepository.CreateDiscipline(Name, TroopId, PrepodId);
+            //disciplineRepository.AddDiscipline(Name, PrepodId, TroopId);
         }
         [HttpPost]
         public void DeleteTheme(int? Id = null)

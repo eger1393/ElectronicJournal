@@ -16,6 +16,6 @@ namespace ElectronicJournal.Domain.Concrete
         public DbSet<Prepod> Prepods { get; set; }
         public DbSet<Discipline> Disciplines { get; set; }
         public DbSet<Theme> Themes { get; set; }
-
+		public DbSet<Assessment> Assessments { get; set; }
     }
 }

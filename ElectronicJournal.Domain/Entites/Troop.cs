@@ -90,12 +90,13 @@ namespace ElectronicJournal.Domain.Entites
 				{
 					foreach (var item2 in Disciplines[i].Theme)
 					{
-						item.Assessments.Add(new Assessment(item2));
+						item.Assessments.Add(new Assessment(item.Id,item2));
 					}
 				}
 			}
 
 		}
+		
 		public Troop CreateNewTroopOnliDisciplinesOnPrepod(int? prepodId)
 		{
 			Troop temp = new Troop()

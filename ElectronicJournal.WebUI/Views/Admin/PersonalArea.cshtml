@@ -115,11 +115,16 @@
     function SetInfoTable(json) {
         $('#InfoTBody').children().remove();
         var htmlTable = '';
-            for (var i = 0; i < json.length; ++i) {
-                htmlTable += '<tr><td>' + json[i].Title + '</td>';
-                htmlTable += '<td>' + json[i].Count + '</td>';
-                htmlTable += '<td>' + json[i].Date + '</td>';
-                htmlTable += '<td><button name="tableButton" data-id="' + json[i].Id + '"value="delete" >Удалить</button></td></tr>';
+        for (var i = 0; i < json.length; ++i) {
+            htmlTable += '<tr> <td><input type="text" data-theme-title="' + json[i].Id + '" value="' + json[i].Title +'"required /></td>';
+            htmlTable += '<td><input type="number" data-theme-count="' + json[i].Id + '" min="1" max="40" value="' + json[i].Count + '"required /></td>';
+            htmlTable += '<td><input type="date" data-theme-date="' + json[i].Id + '" min="2000-01-01" max="2100-01-01" value="' + json[i].Date + '"required /></td>';
+            htmlTable += '<td><button name="tableButton" data-id="' + json[i].Id + '"value="save">Сохранить</button></td></tr>';
+                //<td><button value="ThemeAdd">Добавить</button></td>
+                //htmlTable += '<tr><td>' + json[i].Title + '</td>';
+                //htmlTable += '<td>' + json[i].Count + '</td>';
+                //htmlTable += '<td>' + json[i].Date + '</td>';
+                //htmlTable += '<td><button name="tableButton" data-id="' + json[i].Id + '"value="delete" >Удалить</button></td></tr>';
             }
         $('#InfoTBody').append(htmlTable);
         $('#InfoTBody button[value="delete"]').click(OnClickInfoDelete);

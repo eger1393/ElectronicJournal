@@ -9,5 +9,7 @@ namespace ElectronicJournal.Domain.Abstract
     public interface ITroopRepository
     {
         IQueryable<Entites.Troop> troops { get; }
-    }
+		void CreateDiscipline(string name, int id, int prepodId);
+
+	}
 }
