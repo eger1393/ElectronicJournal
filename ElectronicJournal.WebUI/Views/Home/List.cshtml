@@ -14,19 +14,21 @@
     <div class="well">
         @using (Html.BeginForm("List", "Home", FormMethod.Post))
         {
-            <table class="well">
-                <tr>
-                    <td rowspan="2">№№<br>п/п</td>
-                    <td rowspan="2">Фамилия и инициалы</td>
-                    <td colspan="18">Посещения и успеваемость</td>
-                </tr>
-                <tr>
-                    @foreach (var item in Model.DaysArrival)
-                    {
-                        <td>@item.ToString("dd.MM")</td>
-                    }
-                </tr>
-                @for (int i = 0; i < Model.Students.Count(); i++)
+            <table class="table table-bordered table-hover">
+                <tbody>
+                    <tr>
+                        
+                            <td rowspan="2"><b>№№<br>п/п</b></td>
+                            <td rowspan="2"><b>Фамилия и инициалы</b></td>
+                            <td align="center" colspan="18"><b>Посещения и успеваемость</b></td>
+</tr>
+                    <tr>
+                        @foreach (var item in Model.DaysArrival)
+                        {
+                            <td>@item.ToString("dd.MM")</td>
+                        }
+                    </tr>
+                    @for (int i = 0; i < Model.Students.Count(); i++)
                 {
                     @Html.HiddenFor(m => m.Students[i].FIO);
                     @Html.HiddenFor(m => m.Students[i].Id);
@@ -50,12 +52,13 @@
                                 new SelectListItem {Text = "б", Value="б",Selected = Model.Students[i].Assessments[j].Grade == "б"? true : false },
                                 new SelectListItem {Text = "н", Value="н",Selected = Model.Students[i].Assessments[j].Grade == "н"? true : false }
                                 })
-                        </td>
-                        }
-                    </tr>
-                }
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
             </table>
-            <p><input type="submit" value="Send" /> </p>
+            <p><input class="btn btn-default" type="submit" value="Сохранить изменения" /> </p>
         }
     </div>
 </body>

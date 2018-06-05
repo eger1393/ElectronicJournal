@@ -8,16 +8,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ElectronicJournal.Domain.Entites
 {
-	public class Discipline
-	{
-		public Discipline()
-		{
-			//Theme = new List<Theme>();
-			//for (int i = 0; i < 16; i++)
-			//{
-			//    Theme.Add(new Theme() { Title = "Тема" + i });
-			//}
-		}
+    public class Discipline
+    {
+        public Discipline()
+        {
+            
+        }
 
 		public Discipline(List<DateTime> List_Themes)
 		{

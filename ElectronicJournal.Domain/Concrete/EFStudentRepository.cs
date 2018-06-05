@@ -16,8 +16,8 @@ namespace ElectronicJournal.Domain.Concrete
         {
             foreach (var item in students)
             {
+                if(item.Assessments.Count == 0)
                 item.CreateAssessment();
-                
             }
         }
         public IQueryable<Student> students { get { return context.Students; } }
